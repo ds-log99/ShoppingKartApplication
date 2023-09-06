@@ -25,11 +25,17 @@ namespace ShoppingKart.Services
 
                     if (checkoutItems.Count > 0)
                     {
-
                         if (itemName == checkoutItems[i])
                         {
                             priceTotal += itemPrice;
 
+                            var checkoutListItem = checkoutItems.ElementAt(i);
+                            var itemToRemove = checkoutItems.Single(p => p == checkoutListItem);
+                            checkoutItems.Remove(itemToRemove);
+                            goto OuterLoop;
+                        }
+                        if (priceList.ContainsKey(checkoutItems[i]) != true )
+                        {
                             var checkoutListItem = checkoutItems.ElementAt(i);
                             var itemToRemove = checkoutItems.Single(p => p == checkoutListItem);
                             checkoutItems.Remove(itemToRemove);
