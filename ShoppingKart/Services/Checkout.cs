@@ -9,10 +9,11 @@ namespace ShoppingKart.Services
 {
     public class Checkout : ICheckout
     {
-        double ICheckout.GetSinglePriceTotal(List<string> checkoutItems, Dictionary<string, double> priceList)
+        double ICheckout.GetSinglePriceTotal(List<string> itemsList, Dictionary<string, double> priceList)
         {
             double priceTotal = 0;
-           //var itemsName = priceList.Keys.ToList(); 
+            //var itemsName = priceList.Keys.ToList(); 
+            var checkoutItems = itemsList; 
 
             OuterLoop:
                 for (int i = 0; i <= checkoutItems.Count; i++)
@@ -30,8 +31,8 @@ namespace ShoppingKart.Services
                             priceTotal += itemPrice;
 
                             var checkoutListItem = checkoutItems.ElementAt(i);
-                            var itemToRemove = checkoutItems.Single(p => p == checkoutListItem);
-                            checkoutItems.Remove(itemToRemove);
+                            var itemToRemove = checkoutItems.FirstOrDefault(p => p == checkoutListItem);
+                            checkoutItems.Remove(itemToRemove.ToString());
                             goto OuterLoop;
                         }
                         if (priceList.ContainsKey(checkoutItems[i]) != true )

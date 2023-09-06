@@ -5,6 +5,7 @@ using ShoppingKart.Data;
 using ShoppingKart.Services;
 using System.Globalization;
 
+
 using IHost host = CreateHostBuilder(args).Build();
 
 using var scope = host.Services.CreateScope();
@@ -16,6 +17,7 @@ IHostBuilder CreateHostBuilder(string[] strings)
         .ConfigureServices((_, services) =>
         {
             services.AddTransient<ICheckout, Checkout>();
+            services.AddTransient<IOffers, Offers>();
         });
 }
 
@@ -27,26 +29,44 @@ Console.WriteLine("Item  Price  Offer");
 Console.WriteLine("--------------------");
 
 ItemsDictionary items = new ItemsDictionary();
+OffersList priceOffers = new OffersList();
 Dictionary<string, double> priceList = items.GetPriceList();
 
 foreach (var key in priceList.Keys)
 {
-    Console.WriteLine(key + "     " + priceList[key]);
+    if (priceOffers.GetType != null)
+    {
+        foreach (var offer in priceOffers.GetOffers())
+        {
+            Console.WriteLine(key + "     " + priceList[key] + "     " + offer);
+        }
+    }
+    else Console.WriteLine(key + "     " + priceList[key]);
 }
 
 while (userInput != "exit")
 {
-    Console.WriteLine("Add item to your list: enter done whe your finished ");
+    Console.WriteLine("Add item to your list: enter done when you're finished ");
     userInput = Console.ReadLine();
     checkoutList.Add(userInput.ToUpper());
 
     if (userInput.ToLower() == "done") 
     {
+        var itemToRemove = checkoutList.Single(p => p == "DONE" || p == "done");
+        checkoutList.Remove(itemToRemove);
+
         ICheckout total = new Checkout();
-        var checkoutProcess = new MyProgram(total);
+        IOffers totalWithOffers = new Offers();
+
+        var checkoutProcess = new MyProgram(total, totalWithOffers);
         var sumPrice = checkoutProcess.GetSinglePrice(checkoutList, priceList);
 
+        var sumPriceWithOffers = checkoutProcess.GetPriceWithOffer(checkoutList, priceList, 3, 13.0);
+
         Console.WriteLine($"The total price for you items is: {sumPrice}");
+        Console.WriteLine($"The total price for you items including the offer is: {sumPriceWithOffers}");
+
+
         continue;
     }
 

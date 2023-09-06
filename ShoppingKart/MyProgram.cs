@@ -10,17 +10,24 @@ namespace ShoppingKart
     public class MyProgram
     {
         private readonly ICheckout checkout;
-        public MyProgram( ICheckout checkout)
+        private readonly IOffers offers;
+
+        public MyProgram( ICheckout checkout, IOffers offers)
         {
             this.checkout = checkout;
+            this.offers = offers;
         }
 
         public double GetSinglePrice(List<string> checkoutItems, Dictionary<string, double> priceList) 
         {
-            var itemToRemove = checkoutItems.Single(p => p == "DONE" || p == "done");
-            checkoutItems.Remove(itemToRemove);
-
+          
             return checkout.GetSinglePriceTotal(checkoutItems, priceList);
+        }
+
+        public string GetPriceWithOffer(List<string> checkoutItems, Dictionary<string, double> priceList, int itemCount, double price)
+        {
+
+            return offers.anyNumberOfItemsForSetPrice(checkoutItems, priceList, itemCount, price);
         }
     }
 }
