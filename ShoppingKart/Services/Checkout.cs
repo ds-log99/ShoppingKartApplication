@@ -39,6 +39,7 @@ namespace ShoppingKart.Services
                             var checkoutListItem = checkoutItems.ElementAt(i);
                             var itemToRemove = checkoutItems.Single(p => p == checkoutListItem);
                             checkoutItems.Remove(itemToRemove);
+
                             goto OuterLoop;
                         }
                     }
