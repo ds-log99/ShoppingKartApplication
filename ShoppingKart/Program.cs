@@ -48,15 +48,6 @@ while (userInput != "exit")
         var checkoutProcess = new MyProgram(total);
         var sumPrice = checkoutProcess.GetSinglePrice(checkoutList, priceList);
 
-        /*
-        var itemToRemove = checkoutList.Single(p => p == "DONE" || p == "done");
-        checkoutList.Remove(itemToRemove);
-
-        ICheckout total = new Checkout();
-
-        var sumPrice = total.GetSinglePriceTotal(checkoutList, priceList);
-        */
-
         Console.WriteLine($"The total price for you items is: {sumPrice}");
         continue;
     }
