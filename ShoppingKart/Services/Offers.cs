@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace ShoppingKart.Services
 {
     public class Offers : IOffers
     {
-        public string anyNumberOfItemsForSetPrice(List<string> items, Dictionary<string, double> priceList, int itemCount, double setPrice)
+        public double anyNumberOfItemsForSetPrice(List<string> checkoutItems, Dictionary<string, double> priceList, int itemCount, double setPrice)
         {
-            string resultOffer = string.Empty;
+            double resultOffer = 0.0;
             int duplicateItems = 0;
 
             HashSet<string> noDuplicateItems = new HashSet<string>();
 
-            foreach (string item in items) 
+            foreach (string item in checkoutItems) 
             {
                 if (noDuplicateItems.Add(item) == false )
                 {
@@ -23,7 +24,10 @@ namespace ShoppingKart.Services
                 }
             }
 
-
+            if (duplicateItems == itemCount - 1)
+            {
+                resultOffer = 13.00;
+            }
 
             return resultOffer;
         }

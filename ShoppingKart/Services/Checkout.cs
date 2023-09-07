@@ -9,14 +9,13 @@ namespace ShoppingKart.Services
 {
     public class Checkout : ICheckout
     {
-        double ICheckout.GetSinglePriceTotal(List<string> itemsList, Dictionary<string, double> priceList)
+        double ICheckout.GetSinglePriceTotal(List<string> checkoutItems, Dictionary<string, double> priceList)
         {
             double priceTotal = 0;
-            //var itemsName = priceList.Keys.ToList(); 
-            var checkoutItems = itemsList; 
+            List<string> itemsList = checkoutItems.ToList();
 
             OuterLoop:
-                for (int i = 0; i <= checkoutItems.Count; i++)
+                for (int i = 0; i <= itemsList.Count; i++)
                 {
                     for (int j = 0; j <= priceList.Count; j++)
                     {
@@ -24,22 +23,22 @@ namespace ShoppingKart.Services
                         string itemName = item.Key;
                         double itemPrice = item.Value;
 
-                    if (checkoutItems.Count > 0)
+                    if (itemsList.Count > 0)
                     {
-                        if (itemName == checkoutItems[i])
+                        if (itemName == itemsList[i])
                         {
                             priceTotal += itemPrice;
 
-                            var checkoutListItem = checkoutItems.ElementAt(i);
-                            var itemToRemove = checkoutItems.FirstOrDefault(p => p == checkoutListItem);
-                            checkoutItems.Remove(itemToRemove.ToString());
+                            var checkoutListItem = itemsList.ElementAt(i);
+                            var itemToRemove = itemsList.FirstOrDefault(p => p == checkoutListItem);
+                            itemsList.Remove(itemToRemove.ToString());
                             goto OuterLoop;
                         }
-                        if (priceList.ContainsKey(checkoutItems[i]) != true )
+                        if (priceList.ContainsKey(itemsList[i]) != true )
                         {
-                            var checkoutListItem = checkoutItems.ElementAt(i);
-                            var itemToRemove = checkoutItems.Single(p => p == checkoutListItem);
-                            checkoutItems.Remove(itemToRemove);
+                            var checkoutListItem = itemsList.ElementAt(i);
+                            var itemToRemove = itemsList.Single(p => p == checkoutListItem);
+                            itemsList.Remove(itemToRemove);
 
                             goto OuterLoop;
                         }

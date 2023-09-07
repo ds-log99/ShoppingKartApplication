@@ -44,7 +44,7 @@ foreach (var key in priceList.Keys)
     else Console.WriteLine(key + "     " + priceList[key]);
 }
 
-while (userInput != "exit")
+while (userInput.ToLower() != "exit")
 {
     Console.WriteLine("Add item to your list: enter done when you're finished ");
     userInput = Console.ReadLine();
@@ -64,8 +64,7 @@ while (userInput != "exit")
         var sumPriceWithOffers = checkoutProcess.GetPriceWithOffer(checkoutList, priceList, 3, 13.0);
 
         Console.WriteLine($"The total price for you items is: {sumPrice}");
-        Console.WriteLine($"The total price for you items including the offer is: {sumPriceWithOffers}");
-
+        if (sumPriceWithOffers != 0) Console.WriteLine($"The total price for you items including the offer is: {sumPriceWithOffers}");
 
         continue;
     }

@@ -8,6 +8,6 @@ namespace ShoppingKart.Services
 {
     public interface IOffers
     {
-        public string anyNumberOfItemsForSetPrice(List<string> items, Dictionary<string, double> priceList, int itemCount, double setPrice);
+        public double anyNumberOfItemsForSetPrice(List<string> checkoutItems, Dictionary<string, double> priceList, int itemCount, double setPrice);
     }
 }

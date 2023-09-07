@@ -24,7 +24,7 @@ namespace ShoppingKart
             return checkout.GetSinglePriceTotal(checkoutItems, priceList);
         }
 
-        public string GetPriceWithOffer(List<string> checkoutItems, Dictionary<string, double> priceList, int itemCount, double price)
+        public double GetPriceWithOffer(List<string> checkoutItems, Dictionary<string, double> priceList, int itemCount, double price)
         {
 
             return offers.anyNumberOfItemsForSetPrice(checkoutItems, priceList, itemCount, price);
