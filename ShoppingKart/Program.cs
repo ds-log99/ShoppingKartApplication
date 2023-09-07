@@ -21,7 +21,6 @@ IHostBuilder CreateHostBuilder(string[] strings)
         });
 }
 
-
 string userInput = string.Empty;
 List<string> checkoutList = new List<string>();
 
@@ -63,8 +62,8 @@ while (userInput.ToLower() != "exit")
 
         var sumPriceWithOffers = checkoutProcess.GetPriceWithOffer(checkoutList, priceList, 3, 13.0);
 
-        Console.WriteLine($"The total price for you items is: {sumPrice}");
-        if (sumPriceWithOffers != 0) Console.WriteLine($"The total price for you items including the offer is: {sumPriceWithOffers}");
+        Console.WriteLine($"The total price for you items is: £{sumPrice}");
+        if (sumPriceWithOffers != 0) Console.WriteLine($"The total price for you items including the offer is: £{sumPriceWithOffers}");
 
         continue;
     }
