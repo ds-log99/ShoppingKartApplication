@@ -29,5 +29,11 @@ namespace ShoppingKart
 
             return offers.anyNumberOfItemsForSetPrice(checkoutItems, priceList, itemCount, price);
         }
+
+        public double GetPriceWithOfferSetItems(List<string> checkoutItems, Dictionary<string, double> priceList, string itemName, int itemCount, double price)
+        {
+
+            return offers.setNumberOfItemsForSetPrice(checkoutItems, priceList, itemName, itemCount, price);
+        }
     }
 }

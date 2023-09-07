@@ -26,7 +26,29 @@ namespace ShoppingKart.Services
 
             if (duplicateItems == itemCount - 1)
             {
-                resultOffer = 13.00;
+                resultOffer = setPrice;
+            }
+
+            return resultOffer;
+        }
+
+        public double setNumberOfItemsForSetPrice(List<string> checkoutItems, Dictionary<string, double> priceList, string itemName, int itemCount, double setPrice)
+        {
+            double resultOffer = 0.0;
+            int duplicateItems = 0;
+
+            HashSet<string> noDuplicateItems = new HashSet<string>();
+            foreach (string item in checkoutItems)
+            {
+                if (item.ToUpper() == itemName && noDuplicateItems.Add(item) == false)
+                {
+                    duplicateItems++;
+                }
+            }
+
+            if (duplicateItems == itemCount - 1)
+            {
+                resultOffer = setPrice;
             }
 
             return resultOffer;

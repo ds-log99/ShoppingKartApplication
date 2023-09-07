@@ -60,11 +60,14 @@ while (userInput.ToLower() != "exit")
         var checkoutProcess = new MyProgram(total, totalWithOffers);
         var sumPrice = checkoutProcess.GetSinglePrice(checkoutList, priceList);
 
-        var sumPriceWithOffers = checkoutProcess.GetPriceWithOffer(checkoutList, priceList, 3, 13.0);
-
+        var anyItemsForPriceOffer = checkoutProcess.GetPriceWithOffer(checkoutList, priceList, 4, 13.0);
+        var setItemsForPriceOffer = checkoutProcess.GetPriceWithOfferSetItems(checkoutList, priceList, "A", 3, 10.0);
+        
         Console.WriteLine($"The total price for you items is: £{sumPrice}");
-        if (sumPriceWithOffers != 0) Console.WriteLine($"The total price for you items including the offer is: £{sumPriceWithOffers}");
+        if (anyItemsForPriceOffer != 0 ) Console.WriteLine($"The total price for you items including the offer is: £{anyItemsForPriceOffer}");
+        if(setItemsForPriceOffer != 0 && anyItemsForPriceOffer == 0 ) Console.WriteLine($"The total price for you items including the offer is: £{setItemsForPriceOffer}");
 
+        checkoutList.Clear();
         continue;
     }
 

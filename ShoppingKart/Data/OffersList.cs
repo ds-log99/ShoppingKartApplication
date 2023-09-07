@@ -12,7 +12,8 @@ namespace ShoppingKart.Data
         {
             List<string> offers = new List<string>() 
             {
-                "buy any 3 items for 13.00"
+                "buy any 3 items for 13.00",
+                "buy 3 A items for 13.0"
             };
             
             return offers;

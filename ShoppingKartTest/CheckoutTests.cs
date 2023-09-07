@@ -32,7 +32,7 @@ namespace ShoppingKartTest
         }
 
         [Fact]
-        public void CheckOutPriceWithOfferOk()
+        public void CheckOutPriceWithOfferAnyItemOk()
         {
             //Arrange
             var mockItems = GetMockItems();
@@ -47,7 +47,26 @@ namespace ShoppingKartTest
 
             //Assert
             Assert.Equal(anySetItemsForPriceTest, offerPriceTest);
+        }
 
+
+        [Fact]
+        public void CheckOutPriceWithOfferSetItemOk()
+        {
+            //Arrange
+            var mockItems = GetMockItems();
+            var mockUserInput = GetMockUserInputWithDuplicates();
+
+            string itemName = "A";
+            int testItemCount = 3;
+            double offerPriceTest = 10.0;
+
+            //Act
+            IOffers offers = new Offers();
+            double anySetItemsForPriceTest = offers.setNumberOfItemsForSetPrice(mockUserInput, mockItems, itemName, testItemCount, offerPriceTest);
+
+            //Assert
+            Assert.Equal(anySetItemsForPriceTest, offerPriceTest);
         }
 
 
