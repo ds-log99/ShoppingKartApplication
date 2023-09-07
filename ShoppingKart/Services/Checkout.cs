@@ -31,7 +31,7 @@ namespace ShoppingKart.Services
 
                             var checkoutListItem = itemsList.ElementAt(i);
                             var itemToRemove = itemsList.FirstOrDefault(p => p == checkoutListItem);
-                            itemsList.Remove(itemToRemove.ToString());
+                            itemsList.Remove(itemToRemove!);
                             goto OuterLoop;
                         }
                         if (priceList.ContainsKey(itemsList[i]) != true )
