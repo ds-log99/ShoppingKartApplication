@@ -7,10 +7,10 @@ using System.Globalization;
 
 /*
  * For this test I tried my best to use good design principles following SOLID and DRY 
- * for the UI I the table does not appear exaclty as in the challange edescription with more time i would've taken a different approach such as using string formatting approach and another
+ * for the UI I the table does not appear exaclty as in the challange description with more time I would've taken a different approach such as using string formatting or another
  * way I am thinking of is using Linq to query whats in the list and format using string formatting approach 
  * I impelemented dependency injection for the main funcitonality of the program 
- * I have attempted to unit test using xUnit the main funcitonalities of the app with more time i could've created more tests to check different scenarious 
+ * I have unit tested using xUnit the main funcitonalities of the app with more time I could've created more tests to check different scenarios 
  */
 
 
