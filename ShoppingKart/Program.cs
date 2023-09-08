@@ -27,6 +27,7 @@ IHostBuilder CreateHostBuilder(string[] strings)
             services.AddTransient<ICheckout, Checkout>();
             services.AddTransient<IOffers, Offers>();
         });
+
 }
 
 string userInput = string.Empty;
@@ -63,10 +64,11 @@ while (userInput.ToLower() != "exit")
         var itemToRemove = checkoutList.Single(p => p == "DONE" || p == "done");
         checkoutList.Remove(itemToRemove);
 
-        ICheckout total = new Checkout();
-        IOffers totalWithOffers = new Offers();
+        services.GetService<IOffers>();
+        ICheckout total = services.GetService<ICheckout>();
+        IOffers totalWithOffers = services.GetService<IOffers>();
 
-        var checkoutProcess = new MyProgram(total, totalWithOffers);
+        var checkoutProcess = new MyProgram(total, totalWithOffers!);
         var sumPrice = checkoutProcess.GetSinglePrice(checkoutList, priceList);
 
         var anyItemsForPriceOffer = checkoutProcess.GetPriceWithOffer(checkoutList, priceList, 4, 13.0);
