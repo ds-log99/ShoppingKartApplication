@@ -13,8 +13,7 @@ namespace ShoppingKart.Services
             double priceTotal = 0;
             List<string> itemsList = checkoutItems.ToList();
 
-            var value = priceList.FirstOrDefault(x => x.Key == "A").Value;
-
+            /*
             foreach (var item in itemsList)
             {
                 var itemPrice = priceList.FirstOrDefault(x => x.Key == item).Value;
@@ -23,8 +22,8 @@ namespace ShoppingKart.Services
                     priceTotal += itemPrice;
                 }
               
-            }
-            /*
+            } */
+            
         OuterLoop:
                 for (int i = 0; i <= itemsList.Count; i++)
                 {
@@ -58,7 +57,7 @@ namespace ShoppingKart.Services
                     
                     } 
                 } 
-            */
+            
 
             return priceTotal;
         }
