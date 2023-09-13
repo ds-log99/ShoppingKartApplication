@@ -1,7 +1,6 @@
 ﻿using ShoppingKart.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +13,19 @@ namespace ShoppingKart.Services
             double priceTotal = 0;
             List<string> itemsList = checkoutItems.ToList();
 
-            OuterLoop:
+            var value = priceList.FirstOrDefault(x => x.Key == "A").Value;
+
+            foreach (var item in itemsList)
+            {
+                var itemPrice = priceList.FirstOrDefault(x => x.Key == item).Value;
+                if (itemPrice != 0)
+                {
+                    priceTotal += itemPrice;
+                }
+              
+            }
+            /*
+        OuterLoop:
                 for (int i = 0; i <= itemsList.Count; i++)
                 {
                     for (int j = 0; j <= priceList.Count; j++)
@@ -45,8 +56,9 @@ namespace ShoppingKart.Services
                     }
                     else break;
                     
-                    }
-                }
+                    } 
+                } 
+            */
 
             return priceTotal;
         }

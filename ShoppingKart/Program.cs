@@ -52,7 +52,6 @@ foreach (var key in priceList.Keys)
   
 }
 
-
 while (userInput.ToLower() != "exit")
 {
     Console.WriteLine("Scan item to your shopping cart: enter done when you're finished ");
